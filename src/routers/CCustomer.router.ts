@@ -4,6 +4,7 @@ import { CCustomerController} from "../controllers/CCustomer.controller";
 import { CCustomerValidator } from "../validators/CCustomer.validator";
 
 
+
 class CCustomerRouter extends CBaseRouter {
 
     constructor() {
@@ -27,7 +28,8 @@ class CCustomerRouter extends CBaseRouter {
         console.log('In putRoute() from CCustomerRouter');
     
         // PUT route for updating both new and old customers(created different endpoint)
-        this.router.put('/customer', CCustomerValidator.validateCustomer(), CCustomerController.updateorcreateCustomer);
+        this.router.put('/customer', CCustomerValidator.validateCustomer(), CCustomerController.updateCustomer);
+
     }
     
 
