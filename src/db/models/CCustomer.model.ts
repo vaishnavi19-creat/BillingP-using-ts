@@ -1,63 +1,35 @@
 import { CCustomerEntities } from "../entities/CCustomer.entities";
 import AppDataSource from "../dataSource";
-import { SignUpReq, SignUpResp, getAllCustomers, getCustomerDetailsByCustomerEmailIdResp, getCustomerDetailsByCustomerNameResp } from "../../interfaces/CCustomer.interface";  
+import { SignUpResp, getAllCustomers, getCustomerDetailsByCustomerEmailIdResp, getCustomerDetailsByCustomerNameResp } from "../../interfaces/CCustomer.interface";  
 
 export class CCustomerModel {
-    addCustomer(request: SignUpReq) {
-        throw new Error("Method not implemented.");
+    addCustomer(request: SignUpResp) {
+        return this.addCustomer(request); 
     }  
+
     protected repository;
     addNewCustomer: any;
+
     constructor() {
-        this.repository = AppDataSource.getRepository( CCustomerEntities );  
+        this.repository = AppDataSource.getRepository(CCustomerEntities);  
     }
 
-    public async signUp(objNewCustomer: SignUpReq): Promise<SignUpResp> {
-        try {
-            console.log('Jumped in CCustomerModel => signUp()');
+
     
-           
+    public async addustomer(objNewCustomer: SignUpResp): Promise<SignUpResp> {
+        try {
+            console.log('Jumped in CCustomerModel => addCustomer()');
+    
             const { customerId, customerName, customerAddress, customerMobileNo, customerEmailId, customerGSTNo, customerlogo } = await this.repository.save(objNewCustomer);
-            return { customerId, customerName, customerAddress, customerMobileNo: customerMobileNo,  customerEmailId, customerGSTNo, customerlogo };
+            return { customerId, customerName, customerAddress, customerMobileNo, customerEmailId, customerGSTNo, customerlogo };
         
         } catch (error) {
             throw new Error(error);
         }
     }
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // public async signUp( objNewCustomer: SignUpReq): Promise<SignUpResp> {  
-    //     try{
-    //         console.log('Jumped in CCustomerModel => signUp()');  
-
-    //         const { customerId, customerName, customerAddress, customerMobileNo, customerEmailId, customerGSTNo} = await this.repository.save( objNewCustomer );  
-
-    //         return { customerId, customerName,customerAddress, customerMobileNo, customerEmailId,customerGSTNo};  
-    //     } catch( error ) {
-    //         throw new Error( error );
-    //     }
-    // }
-
-    public async getCustomerDetailsByName({ customerName}: { customerName: string;}): Promise<getCustomerDetailsByCustomerNameResp> {  
-        try{
+    public async getCustomerDetailsByName({ customerName }: { customerName: string; }): Promise<getCustomerDetailsByCustomerNameResp> {  
+        try {
             console.log('Jumped in CCustomerModel => getCustomerDetailsByName()');  
 
             return await this.repository.findOne({
@@ -68,17 +40,16 @@ export class CCustomerModel {
                 },
                 where: {
                     customerName: customerName,
-                    // customerAddress: customerAddress  
                 }
             });
 
-        } catch(error) {
-            throw new Error( error );
+        } catch (error) {
+            throw new Error(error);
         }
     }
 
     public async getCustomerDetailsByMobileNumber(customerMobileNumber: string): Promise<getCustomerDetailsByCustomerNameResp> {  
-        try{
+        try {
             console.log('Jumped in CCustomerModel => getCustomerDetailsByMobileNumber()'); 
 
             return await this.repository.findOne({
@@ -93,13 +64,13 @@ export class CCustomerModel {
                 }
             });
 
-        } catch(error) {
-            throw new Error( error );
+        } catch (error) {
+            throw new Error(error);
         }
     }
 
     public async getCustomerDetailsByEmailId(customerEmailId: string): Promise<getCustomerDetailsByCustomerEmailIdResp> {  
-        try{
+        try {
             console.log('Jumped in CCustomerModel => getCustomerDetailsByEmailId()'); 
 
             return await this.repository.findOne({
@@ -114,13 +85,13 @@ export class CCustomerModel {
                 }
             });
 
-        } catch(error) {
-            throw new Error( error );
+        } catch (error) {
+            throw new Error(error);
         }
     }
 
     public async getAllCustomers(limit: number = 10, pageNumber: number = 1): Promise<getAllCustomers[]> {  
-        try{
+        try {
             console.log('Jumped in CCustomerModel => getAllCustomers()');  
             const skip = (limit * pageNumber) - limit;
 
@@ -132,8 +103,8 @@ export class CCustomerModel {
             .take(limit)
             .getMany();
 
-        } catch(error) {
-            throw new Error( error );
+        } catch (error) {
+            throw new Error(error);
         }
     }
 }
