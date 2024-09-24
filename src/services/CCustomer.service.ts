@@ -1,6 +1,6 @@
 import { errorTypeEnum } from "../enums/errorType.enum";
 import { CCustomErrors } from "../helpers/CCustomErrors.helper";
-import { SignUpReq } from "../interfaces/CCustomer.interface";
+import { SignUpResp } from "../interfaces/CCustomer.interface";
 import { CCustomerModel } from "../db/models/CCustomer.model";
 
 const objCustomerModel = new CCustomerModel();
@@ -8,7 +8,7 @@ const objCustomerModel = new CCustomerModel();
 export class CCustomerService {
     [x: string]: any;
 
-    async addNewCustomer(request: SignUpReq) {
+    async addNewCustomer(request: SignUpResp) {
         try {
             console.log('In CCustomerService => signUp() ');
 
