@@ -28,13 +28,13 @@ export class CCustomerEntities extends CBaseEntities {
     customerCity: string;
 
     @Column({ name: 'customer_mobile_number', type: 'varchar', length: 10, nullable: false })
-    customerMobileNumber: string;
+    customerMobileNo: string;
 
     @Column({ name: 'customer_email_id', type: 'varchar', length: 50, nullable: false })
     customerEmailId: string;
 
     @Column({ name: 'customer_gst_number', type: 'varchar', length: 15, nullable: false })
-    customerGSTNumber: string;
+    customerGSTNo: string;
 
     @Column({ name: 'customer_status', type: 'boolean', default: true })
     customerStatus: boolean;
@@ -43,7 +43,7 @@ export class CCustomerEntities extends CBaseEntities {
     customerLastRecord: string;
 
     @Column({ name: 'customer_logo_url', type: 'varchar', length: 200, nullable: true })
-    customerLogoUrl: string;
+    customerLogo: string;
 
     @Column({ name: 'customer_type_id' })
     customerTypeId: number;
