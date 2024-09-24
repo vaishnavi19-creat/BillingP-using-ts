@@ -1,0 +1,54 @@
+import { Column, PrimaryGeneratedColumn, Unique, Entity, Index, ManyToOne, JoinColumn } from "typeorm";
+import { CBaseEntities } from "./CBase.entities";
+// import { CCustomerTypeEntities } from "./CCustomerType.entities";
+
+@Entity({ name: 'customers' })
+@Unique(['customerMobileNumber'])
+@Unique(['customerEmailId'])
+export class CCustomerEntities extends CBaseEntities {
+
+    @PrimaryGeneratedColumn({ name: 'customer_id' })
+    customerId: number;
+
+    @Index()
+    @Column({ name: 'customer_name', type: 'varchar', length: 100, nullable: false })
+    customerName: string;
+
+
+    @Column({ name: 'customer_address', type: 'varchar', length: 500, nullable: false })
+    customerAddress: string;
+
+    @Column({ name: 'customer_country_id', type: 'integer', nullable: false })
+    customerCountryId: string;
+
+    @Column({ name: 'customer_state_id', type: 'integer', nullable: false })
+    customerStateId: string;
+
+    @Column({ name: 'customer_city', type: 'varchar', length: 20, nullable: false })
+    customerCity: string;
+
+    @Column({ name: 'customer_mobile_number', type: 'varchar', length: 10, nullable: false })
+    customerMobileNumber: string;
+
+    @Column({ name: 'customer_email_id', type: 'varchar', length: 50, nullable: false })
+    customerEmailId: string;
+
+    @Column({ name: 'customer_gst_number', type: 'varchar', length: 15, nullable: false })
+    customerGSTNumber: string;
+
+    @Column({ name: 'customer_status', type: 'boolean', default: true })
+    customerStatus: boolean;
+
+    @Column({ name: 'customer_last_record', type: 'text', default: null, nullable: true })
+    customerLastRecord: string;
+
+    @Column({ name: 'customer_logo_url', type: 'varchar', length: 200, nullable: true })
+    customerLogoUrl: string;
+
+    @Column({ name: 'customer_type_id' })
+    customerTypeId: number;
+
+    @ManyToOne(() => CCustomerEntities, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+    @JoinColumn({ name: 'customer_type_id', referencedColumnName: 'customerTypeId' })
+    customerTypeStatic: CCustomerEntities;
+}
