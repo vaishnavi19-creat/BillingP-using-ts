@@ -58,6 +58,8 @@ export class CServer {
         // this.app.use( '/api/v1.0/auth', CSchoolRouter );
         this.app.use( '/api/v1.0/sign-up', CSignUpRouter );
         this.app.use( '/api/v1.0/shop', CShopRouter );
+        this.app.use('/api/v1.0/customer', CCustomerRouter); 
+
     }
 
     handle404Error() {
