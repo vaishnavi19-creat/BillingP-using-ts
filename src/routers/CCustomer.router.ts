@@ -16,8 +16,8 @@ class CCustomerRouter extends CBaseRouter {
     }
 
     getRoutes() {
-        // console.log('In getRoute() from CSignUpRouter');
-        // this.router.get( '/getAllShops', CShopValidator.validateGetAllShops(), CShopController.getAllShops );
+       console.log('In getRoute() from CCustomersRouter');
+       this.router.get( '/new-customer', CCustomerValidator.validateCustomer(), CCustomerController.getAllCustomers );
     }
     postRoutes() {
         console.log('In postRoute() from CCustomerRouter');
